@@ -1,0 +1,13 @@
+<h1>{{numero}}</h1>
+
+<mat-grid-list cols="5" rowHeight = "50px">
+    <mat-grid-tile 
+    [style.background] = estilos[contadorEstilo].background
+    [style.color] = estilos[contadorEstilo].cor
+    *ngFor="let number of generatedNumbers">
+  {{number}}
+</mat-grid-tile>
+</mat-grid-list>
+
+<h1>{{getData() | date: 'dd/MM/yyyy'}}</h1>
+<h1>{{getData() | date: 'HH:mm:ss'}}</h1>
