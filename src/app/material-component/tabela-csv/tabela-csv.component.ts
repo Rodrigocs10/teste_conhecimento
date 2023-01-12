@@ -1,10 +1,15 @@
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import { CdkDragDrop, CdkDragStart, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import { Papa } from 'ngx-papaparse';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort, Sort} from '@angular/material/sort';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+import {
+  CdkDragDrop,
+  CdkDragStart,
+  CdkDropList,
+  moveItemInArray,
+} from "@angular/cdk/drag-drop";
+import { AfterViewInit, Component, ViewChild } from "@angular/core";
+import { Papa } from "ngx-papaparse";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, Sort } from "@angular/material/sort";
 
 export interface Rows {
   "0": string;
@@ -24,53 +29,62 @@ export interface Rows {
   "14": string;
   "15": string;
   "16": string;
-  "17": string;  
+  "17": string;
 }
 
 @Component({
-  selector: 'app-tabela-csv',
-  templateUrl: './tabela-csv.component.html',
-  styleUrls: ['./tabela-csv.component.css'],
+  selector: "app-tabela-csv",
+  templateUrl: "./tabela-csv.component.html",
+  styleUrls: ["./tabela-csv.component.css"],
 })
-
-export class TabelaCsvComponent implements AfterViewInit{
+export class TabelaCsvComponent implements AfterViewInit {
   displayedColumns: string[] = [];
   file!: File;
-  previousIndex: number | undefined ;  
-  dataSource: any;  
-  
+  previousIndex: number | undefined;
+  dataSource: any;
+
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   @ViewChild(MatSort) sort: MatSort | undefined;
 
   columns: any[] = [
-    { field: '0' },
-    { field: '1' },
-    { field: '2' },  
-    { field: '3' },  
-    { field: '4' },  
-    { field: '5' },  
-    { field: '6' },  
-    { field: '7' },  
-    { field: '8' },  
-    { field: '9' },  
-    { field: '10' },  
-    { field: '11' },  
-    { field: '12' },  
-    { field: '13' },  
-    { field: '14' },  
-    { field: '15' },  
-    { field: '16' },  
-    { field: '17' },  
+    { field: "0", hidden: false },
+    { field: "1", hidden: false },
+    { field: "2", hidden: false },
+    { field: "3", hidden: false },
+    { field: "4", hidden: false },
+    { field: "5", hidden: false },
+    { field: "6", hidden: false },
+    { field: "7", hidden: false },
+    { field: "8", hidden: false },
+    { field: "9", hidden: false },
+    { field: "10", hidden: false },
+    { field: "11", hidden: false },
+    { field: "12", hidden: false },
+    { field: "13", hidden: false },
+    { field: "14", hidden: false },
+    { field: "15", hidden: false },
+    { field: "16", hidden: false },
+    { field: "17", hidden: false },
   ];
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
+  mostrarTodasColunas(){
+    for(let i = 0; i< this.columns.length; i++){
+      this.columns[i].hidden = false;
+    }
+  }
+
   ngOnInit() {
     this.setDisplayedColumns();
     this.dataSource.sort = this.sort;
+  }
+
+  removerColuna(index: number) {
+    this.columns[index].hidden = true;
   }
 
   constructor(private papa: Papa, private _liveAnnouncer: LiveAnnouncer) {}
@@ -79,33 +93,32 @@ export class TabelaCsvComponent implements AfterViewInit{
     //console.log(this.file);
 
     this.papa.parse(this.file, {
-      delimiter: ';',
-      newline: '',
+      delimiter: ";",
+      newline: "",
       header: false,
       dynamicTyping: true,
       complete: (result) => {
-        
         this.dataSource = new MatTableDataSource<Rows>(result.data);
         this.dataSource.paginator = this.paginator;
         this.setDisplayedColumns();
         this.dataSource.sort = this.sort;
-        
+
         console.log(result.data[0]["0"]);
       },
     });
   }
-  
-  dragStarted(event: CdkDragStart, index: number ) {
+
+  dragStarted(event: CdkDragStart, index: number) {
     //this.previousIndex = index;
   }
-  
+
   dropListDropped(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
     this.setDisplayedColumns();
   }
 
   setDisplayedColumns() {
-    this.columns!.forEach(( colunm, index) => {
+    this.columns!.forEach((colunm, index) => {
       colunm.index = index;
       this.displayedColumns[index] = colunm.field;
     });
@@ -119,7 +132,7 @@ export class TabelaCsvComponent implements AfterViewInit{
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+      this._liveAnnouncer.announce("Sorting cleared");
     }
   }
 
@@ -127,5 +140,4 @@ export class TabelaCsvComponent implements AfterViewInit{
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }

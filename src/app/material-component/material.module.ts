@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { DemoMaterialModule } from '../demo-material-module';
 import { CdkTableModule } from '@angular/cdk/table';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialRoutes } from './material.routing';
@@ -29,8 +29,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     RouterModule.forChild(MaterialRoutes),
     DemoMaterialModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
+    
     FlexLayoutModule,
     CdkTableModule,
     DragDropModule
