@@ -10,9 +10,7 @@ export interface Menu {
 const MENUITEMS = [  
   { state: 'tabela', name: 'Tabela', type: 'link', icon: 'av_timer' },
   { state: 'grupoimagens', name: 'Grupo Imagens', type: 'link', icon: 'av_timer' },
-  { state: 'numerosaleatorios', name: 'Numeros Aleatórios', type: 'link', icon: 'av_timer' },
-  { state: 'testandolayout', name: 'Testando Layout', type: 'link', icon: 'av_timer' },
-  { state: 'testandodrag', name: 'Testando Drag', type: 'link', icon: 'av_timer' },
+  { state: 'numerosaleatorios', name: 'Numeros Aleatórios', type: 'link', icon: 'av_timer' }
 ];
 
 @Injectable()

@@ -17,10 +17,10 @@ import { GrupoImagensComponent } from './grupo-imagens/grupo-imagens.component';
 import { NumerosAleatoriosComponent } from './numeros-aleatorios/numeros-aleatorios.component';
 
 import { DatePipe } from '@angular/common';
-import { TestandoLayoutComponent } from './testando-layout/testando-layout.component';
+
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { TestandoDragComponent } from './testando-drag/testando-drag.component'
+
 
 
 @NgModule({
@@ -40,9 +40,7 @@ import { TestandoDragComponent } from './testando-drag/testando-drag.component'
   declarations: [
     TabelaCsvComponent,
     GrupoImagensComponent,
-    NumerosAleatoriosComponent,
-    TestandoLayoutComponent,
-    TestandoDragComponent    
+    NumerosAleatoriosComponent    
   ]
 })
 export class MaterialComponentsModule {}
