@@ -16,7 +16,11 @@ import { TabelaCsvComponent } from './tabela-csv/tabela-csv.component';
 import { GrupoImagensComponent } from './grupo-imagens/grupo-imagens.component';
 import { NumerosAleatoriosComponent } from './numeros-aleatorios/numeros-aleatorios.component';
 
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { TestandoLayoutComponent } from './testando-layout/testando-layout.component';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TestandoDragComponent } from './testando-drag/testando-drag.component'
 
 
 @NgModule({
@@ -28,14 +32,17 @@ import { DatePipe } from '@angular/common'
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    CdkTableModule
+    CdkTableModule,
+    DragDropModule
   ],
   providers: [DatePipe ],
   entryComponents: [TabelaCsvComponent],
   declarations: [
     TabelaCsvComponent,
     GrupoImagensComponent,
-    NumerosAleatoriosComponent,                
+    NumerosAleatoriosComponent,
+    TestandoLayoutComponent,
+    TestandoDragComponent    
   ]
 })
 export class MaterialComponentsModule {}
